@@ -3,7 +3,7 @@
 
 #keystore信息
 #Windows 下路径分割线请注意使用\\转义
-keystorePath = "../signature/appDev.jks"
+keystorePath = "../signature/xxx.jks"
 keyAlias = "app"
 keystorePassword = "123456"
 keyPassword = "123456"

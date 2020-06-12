@@ -8,8 +8,8 @@
 ## 使用方法
 
 - ProtectedApkResignerForWalle(https://github.com/Jay-Goo/ProtectedApkResignerForWalle/blob/master/README.md)
+- 拷贝加固后未签名的 APK 到本项目根目录下
 - 修改 `config.py`，按照注释改成自己项目配置
 - 根据项目情况修改 `channel` 文件，以后扩展渠道时，我们只需要修改这个文件就好了
-- 将已经加固好的包【未签名的包，请不要使用加固客户端签名工具】放到walle目录下，即app-release.encrypted.apk
 - 运行命令 `python ApkResigner.py`， 即可自动生成所有渠道包，之后我们可以在channles文件夹下看到生成的各种渠道包了。 
 
