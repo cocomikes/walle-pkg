@@ -72,7 +72,7 @@ def createChannelsDir():
 
 # 日期格式 20190830
 def buildTime() :
-  return datetime.datetime.now().strftime('%Y%m%d')
+  return datetime.datetime.now().strftime('%Y%m%d%H%M')
 
 #当前脚本文件所在目录
 parentPath = curFileDir() + getBackslash()
@@ -86,7 +86,7 @@ keystorePath = config.keystorePath
 keyAlias = config.keyAlias
 keystorePassword = config.keystorePassword
 keyPassword = config.keyPassword
-channelsOutputFilePath = parentPath + "channels"
+channelsOutputFilePath = parentPath + "apks"
 channelFilePath = parentPath +"channel"
 protectedSourceApkPath = parentPath + config.protectedSourceApkName
 
@@ -104,7 +104,8 @@ if len(config.channelFilePath) > 0:
 # 加固后且未签名文件名
 zipalignedApkPath = protectedSourceApkPath[0 : -4] + "_aligned.apk"
 # 签名后文件名
-signedApkPath = protectedSourceApkPath[0 : -4] + "_" + buildTime() + "_signed" + ".apk"
+signedApkPath = protectedSourceApkPath[0 : -4] + "_signed" + ".apk"
+
 
 # 创建Channels输出文件夹
 createChannelsDir()
