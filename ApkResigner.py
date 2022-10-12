@@ -86,33 +86,27 @@ keystorePath = config.keystorePath
 keyAlias = config.keyAlias
 keystorePassword = config.keystorePassword
 keyPassword = config.keyPassword
-channelsOutputFilePath = parentPath + "apks"
-channelFilePath = parentPath +"channel"
 protectedSourceApkPath = parentPath + config.protectedSourceApkName
-
-
 # 检查自定义路径，并作替换
 if len(config.protectedSourceApkDirPath) > 0:
   protectedSourceApkPath = config.protectedSourceApkDirPath + getBackslash() + config.protectedSourceApkName
 
-if len(config.channelsOutputFilePath) > 0:
-  channelsOutputFilePath = config.channelsOutputFilePath
+# if len(config.channelsOutputFilePath) > 0:
+#   channelsOutputFilePath = config.channelsOutputFilePath
 
-if len(config.channelFilePath) > 0:
-  channelFilePath = config.channelFilePath
+# if len(config.channelFilePath) > 0:
+#   channelFilePath = config.channelFilePath
 
 # 加固后且未签名文件名
 zipalignedApkPath = protectedSourceApkPath[0 : -4] + "_aligned.apk"
 # 签名后文件名
 signedApkPath = protectedSourceApkPath[0 : -4] + "_signed" + ".apk"
 
-
 # 创建Channels输出文件夹
 createChannelsDir()
 
 #清空Channels输出文件夹
 cleanChannelsFiles()
-
 
 #对齐
 zipalignShell = buildToolsPath + "zipalign -v 4 " + protectedSourceApkPath + " " + zipalignedApkPath
@@ -128,12 +122,23 @@ checkV2Shell = "java -jar " + checkAndroidV2SignaturePath + " " + signedApkPath;
 os.system(checkV2Shell)
 
 # walle-cli命令用法可看https://github.com/Meituan-Dianping/walle/blob/master/walle-cli/README.md
+#渠道包
+channelsOutputFilePath=protectedSourceApkPath[0 : -4]
+channelFilePath = config.protectedSourceApkDirPath + getBackslash() + "full_channel"
 #写入渠道
 if len(config.extraConfigFilePath) > 0:
   writeChannelShell = "java -jar " + walleChannelWritterPath + " batch2 -f " + config.extraConfigFilePath + " " + signedApkPath + " " + channelsOutputFilePath
 else:
   writeChannelShell = "java -jar " + walleChannelWritterPath + " batch -f " + channelFilePath + " " + signedApkPath + " " + channelsOutputFilePath
-
+os.system(writeChannelShell)
+#应用市场包
+channelsOutputFilePath=protectedSourceApkPath[0 : -4] + "_应用市场"
+channelFilePath = config.protectedSourceApkDirPath + getBackslash() + "market_channel"
+#写入渠道
+if len(config.extraConfigFilePath) > 0:
+  writeChannelShell = "java -jar " + walleChannelWritterPath + " batch2 -f " + config.extraConfigFilePath + " " + signedApkPath + " " + channelsOutputFilePath
+else:
+  writeChannelShell = "java -jar " + walleChannelWritterPath + " batch -f " + channelFilePath + " " + signedApkPath + " " + channelsOutputFilePath
 os.system(writeChannelShell)
 
 cleanTempResource()
@@ -142,5 +147,3 @@ print ("\n**** =============================TASK FINISHED=======================
 print ("\n↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓   Please check channels in the path   ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\n")
 print ("\n"+channelsOutputFilePath+"\n")
 print ("\n**** =============================TASK FINISHED=================================== ****\n")
-
-
