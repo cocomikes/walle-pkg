@@ -9,7 +9,7 @@ keystorePassword = "daofeng"
 keyPassword = "daofeng"
 
 #加固后的源文件名（未重签名）每次发布新版时务必更新名称
-protectedSourceApkName = "zhw_v6.1.2.0.apk"
+protectedSourceApkName = "zhw_v6.1.9.1.apk"
 #加固后的源文件所在文件夹路径(...path),注意结尾不要带分隔符，默认在此文件夹根目录
 protectedSourceApkDirPath = "./zuhaowan"
 #额外信息配置文件（绝对路径，例如/Users/mac/Desktop/walle360/config.json）

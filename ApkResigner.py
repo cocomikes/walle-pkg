@@ -122,15 +122,15 @@ checkV2Shell = "java -jar " + checkAndroidV2SignaturePath + " " + signedApkPath;
 os.system(checkV2Shell)
 
 # walle-cli命令用法可看https://github.com/Meituan-Dianping/walle/blob/master/walle-cli/README.md
-#渠道包
-channelsOutputFilePath=protectedSourceApkPath[0 : -4]
-channelFilePath = config.protectedSourceApkDirPath + getBackslash() + "full_channel"
-#写入渠道
-if len(config.extraConfigFilePath) > 0:
-  writeChannelShell = "java -jar " + walleChannelWritterPath + " batch2 -f " + config.extraConfigFilePath + " " + signedApkPath + " " + channelsOutputFilePath
-else:
-  writeChannelShell = "java -jar " + walleChannelWritterPath + " batch -f " + channelFilePath + " " + signedApkPath + " " + channelsOutputFilePath
-os.system(writeChannelShell)
+# #渠道包
+# channelsOutputFilePath=protectedSourceApkPath[0 : -4]
+# channelFilePath = config.protectedSourceApkDirPath + getBackslash() + "full_channel"
+# #写入渠道
+# if len(config.extraConfigFilePath) > 0:
+#   writeChannelShell = "java -jar " + walleChannelWritterPath + " batch2 -f " + config.extraConfigFilePath + " " + signedApkPath + " " + channelsOutputFilePath
+# else:
+#   writeChannelShell = "java -jar " + walleChannelWritterPath + " batch -f " + channelFilePath + " " + signedApkPath + " " + channelsOutputFilePath
+# os.system(writeChannelShell)
 #应用市场包
 channelsOutputFilePath=protectedSourceApkPath[0 : -4] + "_应用市场"
 channelFilePath = config.protectedSourceApkDirPath + getBackslash() + "market_channel"
